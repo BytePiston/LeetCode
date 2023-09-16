@@ -6,6 +6,7 @@ class Solution {
             if(nums[i] != i+1)
                 result.add(nums[i]);        
         }
+        System.gc();
         return result;
     }
     void cyclicSort(int[] nums){
