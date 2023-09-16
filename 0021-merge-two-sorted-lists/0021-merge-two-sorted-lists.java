@@ -8,6 +8,8 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+ //Recursive Approch
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         while(list1 != null && list2 != null){
