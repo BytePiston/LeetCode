@@ -12,6 +12,7 @@ class Solution {
             else
                 return mid;
         }
+        System.gc();
         return -1;
     }
 }
