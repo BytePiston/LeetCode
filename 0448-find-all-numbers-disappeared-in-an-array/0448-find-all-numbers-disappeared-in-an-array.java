@@ -1,7 +1,7 @@
 class Solution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
         cyclicSort(nums);
-        System.out.println(Arrays.toString(nums));
+        
         List<Integer> result = new ArrayList<>();
         for(int i=0; i< nums.length; i++){
             if(i != nums[i]-1)
