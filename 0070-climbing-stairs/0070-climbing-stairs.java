@@ -19,7 +19,7 @@ class Solution {
             }
         }
         memo.put(n, count);
-        System.gc();
+        
         return count;
     }
 }
