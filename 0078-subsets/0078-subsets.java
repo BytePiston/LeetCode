@@ -1,17 +1,17 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> outer = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        outer.add(list);
-
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> emptyList = new ArrayList<>();
+        result.add(emptyList);
+        
         for(int num: nums){
-            int n = outer.size();
+            int n = result.size();
             for(int i=0; i<n; i++){
-                List<Integer> list1 = new ArrayList<>(outer.get(i));
-                list1.add(num);
-                outer.add(list1);
+                List<Integer> inner = new ArrayList(result.get(i));
+                inner.add(num);
+                result.add(inner);
             }
         }
-        return outer;
+        return result;
     }
 }
