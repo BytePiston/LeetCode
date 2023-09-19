@@ -1,30 +1,30 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int[] result = {-1, -1};
-        result[0] = binarySearch(nums, target, true);
-        if(result[0] != -1)
-            result[1] = binarySearch(nums, target, false);
+        int[] result = new int[]{-1, -1};
+        result[0] = search(nums, target, true);
+        if(result[0] >= 0){
+            result[1] = search(nums, target, false);
+        }
         return result;
     }
 
-    int binarySearch(int[] nums, int target, boolean isFirstIndex){
+    int search(int[] nums, int target, boolean isFirst){
         int ans = -1;
-        int start = 0;
-        int end = nums.length-1;
-        while(start<=end){
-            int mid = start + (end - start+1)/2;
-            if(nums[mid] < target){
-                start = mid+1;
-            } else if(nums[mid] > target){
-                end = mid-1;
-            }else{
+        int s = 0;
+        int e = nums.length-1;
+        while(s<=e){
+            int mid = s + (e-s)/2;
+            if(nums[mid] == target){
                 ans = mid;
-                if(isFirstIndex){
-                    end = mid -1;
-                }else{
-                    start = mid+1;
-                }
+                if(isFirst)
+                    e = mid-1;
+                else
+                    s = mid+1;
             }
+            else if(nums[mid] > target)
+                e = mid - 1;
+            else
+                s = mid + 1;
         }
         return ans;
     }
