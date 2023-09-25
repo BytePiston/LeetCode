@@ -2,22 +2,10 @@ class Solution {
     public int finalValueAfterOperations(String[] operations) {
         int x = 0;
         for(String operation: operations){
-            switch(operation){
-                case "--X":
-                    x-=1;
-                    break;
-                case "X--":
-                    x-=1;
-                    break;
-                case "++X":
-                    x+=1;
-                    break;
-                case "X++":
-                    x+=1;
-                    break;
-                default:
-                    continue;
-            }
+            if(operation.equals("--X") || operation.equals("X--"))
+                x-=1;
+            else
+                x+=1;
         }
         return x;
     }
