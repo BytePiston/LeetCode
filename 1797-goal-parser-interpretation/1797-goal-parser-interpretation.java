@@ -12,7 +12,7 @@ class Solution {
             } else if(charArray[i] == '(' && (i+1<charArray.length && charArray[i+1] == 'a')){
                 sb.append("al");
                 i+=3;
-            } else if(charArray[i] == 'g' || charArray[i] == 'G'){
+            } else if(charArray[i] == 'G'){
                 sb.append(charArray[i]);
                 i++;
             }
