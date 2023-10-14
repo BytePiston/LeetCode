@@ -1,33 +1,34 @@
 class Solution {
     public boolean isValid(String s) {
-        int n = s.length();
-        char[] stack = new char[n];
+        if(s.length()<2)
+            return false;
+        char[] stack = new char[s.length()];
+        char[] charArray = s.toCharArray();
         int top = -1;
-        for (int i = 0; i < n; i++) {
-            char newCh = s.charAt(i);
-            switch (newCh) {
+        for(char ch: charArray){
+            switch(ch){
                 case '(':
-                case '[':
                 case '{':
-                    stack[++top] = newCh;
+                case '[':
+                    stack[++top] = ch;
                     break;
                 case ')':
-                    if (top == -1 || stack[top] != '(')
-                        return false;
-                    top--;
-                    break;
-                case ']':
-                    if (top == -1 || stack[top] != '[')
+                    if(top == -1 || stack[top] != '(')
                         return false;
                     top--;
                     break;
                 case '}':
-                    if (top == -1 || stack[top] != '{')
+                    if(top == -1 || stack[top] != '{')
+                        return false;
+                    top--;
+                    break;
+                case ']':
+                    if(top == -1 || stack[top] != '[')
                         return false;
                     top--;
                     break;
             }
         }
-        return top == -1;
+        return top==-1;
     }
 }
