@@ -1,13 +1,16 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
+        Map<Integer, Integer> complimentMap = new HashMap<>();
+        int[] res = new int[2];
+        for(int i=0; i<nums.length; i++){
+            if(complimentMap.containsKey(nums[i])){
+                res[0] = complimentMap.get(nums[i]);
+                res[1] = i;
+                break;
+            }else{
+                complimentMap.put(target-nums[i], i);
             }
-            map.put(nums[i], i);
         }
-        throw new IllegalArgumentException("No two numbers add up to the target.");
+        return res;
     }
 }
