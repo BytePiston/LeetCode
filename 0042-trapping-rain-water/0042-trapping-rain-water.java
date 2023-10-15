@@ -4,25 +4,24 @@ class Solution {
     * Space Complexity: O(1); Without Extra Space
     */
     public int trap(int[] height) {
-        int trappedWater = 0;
         int l = 0;
         int r = height.length-1;
-        int leftMax = height[0];
-        int rightMax = height[height.length-1];
-
+        int lMax = height[l];
+        int rMax = height[r];
+        int trappedWater = 0;
         while(l<r){
-            if(leftMax<=rightMax){
+            if(lMax <= rMax){
                 l++;
-                if(height[l] <= leftMax)
-                    trappedWater += leftMax - height[l];
+                if(height[l]>lMax)
+                    lMax = height[l];
                 else
-                    leftMax = height[l];
+                    trappedWater += lMax - height[l];
             }else{
                 r--;
-                if(height[r] <= rightMax)
-                    trappedWater += rightMax - height[r];
+                if(height[r]>rMax)
+                    rMax = height[r];
                 else
-                    rightMax = height[r];
+                    trappedWater += rMax - height[r];
             }
         }
         return trappedWater;
