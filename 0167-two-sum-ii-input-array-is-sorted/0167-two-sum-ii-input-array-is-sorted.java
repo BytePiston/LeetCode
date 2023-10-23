@@ -3,19 +3,29 @@ class Solution {
         int s = 0;
         int e = nums.length-1;
         while(s<e){
-            int mid = s + (e-s)/2;
-            if(nums[s]+nums[e] == target)
-                return new int[]{s+1,e+1};
-            else if(nums[s]+nums[mid] == target)
-                return new int[]{s+1,mid+1};
-            else if(nums[mid]+nums[e] == target)
-                return new int[]{mid+1,e+1};
-            
-            if(nums[s]+nums[e] < target)
-                s++;
-            else if(nums[s]+nums[e] > target)
-                e--;
+            int sum = nums[s] + nums[e];
+            if(sum == target)
+                return new int[]{s+1, e+1};
+            else if(sum > target)
+                e = search(nums, target-nums[s], s+1, e-1);
+            else
+                s = search(nums, target-nums[e], s+1, e-1);
+
         }
-        return new int[]{-1, -1};
+        return null;
+    }
+
+    int search(int[] nums, int target, int s,  int e){
+        int mid = 0;
+        while(s<=e){
+            mid = s + (e-s)/2;
+            if(nums[mid] == target)
+                return mid;
+            else if(nums[mid] < target)
+                s = mid+1;
+            else
+                e = mid-1;
+        }
+        return mid;
     }
 }
