@@ -11,17 +11,17 @@ class Solution {
                 int sum = nums[i] + nums[s] + nums[e];
                 if(sum == 0){
                     result.add(Arrays.asList(nums[i], nums[s], nums[e]));
+
                     while(s<e && nums[s] == nums[s+1])
                         s++;
                     while(s<e && nums[e] == nums[e-1])
                         e--;
                     s++;
                     e--;
-                }else if(sum < 0){
+                } else if(sum < 0)
                     s++;
-                }else{
+                else
                     e--;
-                }
             }
         }
         return result;
