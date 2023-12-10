@@ -2,18 +2,19 @@ class Solution {
     public void nextPermutation(int[] nums) {
         int peak = findPeak(nums);
         if(peak == 0){
-            Arrays.sort(nums);
+            reverseArray(nums);
         } else{
-            int i = peak;
-            for(int k=i; k<nums.length; k++){
-                if(nums[k]>nums[peak-1] && nums[k]<nums[i])
-                    i = k;
+            int k = peak;
+            for(int i=peak; i<nums.length; i++){
+                if(nums[i]>nums[peak-1] && nums[i]<nums[k]){
+                    k=i;
+                }
             }
-            swap(nums, i, peak-1);
+            swap(nums, peak-1, k);
             Arrays.sort(nums, peak, nums.length);
-        }   
+        }
     }
-
+    
     int findPeak(int[] nums){
         int peak = 0;
         for(int i=1; i<nums.length; i++){
@@ -22,10 +23,21 @@ class Solution {
         }
         return peak;
     }
-
-    void swap(int[] nums, int i, int k){
-        int temp = nums[i];
-        nums[i] = nums[k];
-        nums[k] = temp;
+    
+    int[] reverseArray(int[] nums){
+        int left = 0;
+        int right = nums.length-1;
+        while(left<right){
+            swap(nums, left, right);
+            left++;
+            right--;
+        }
+        return nums;
+    }
+    
+    void swap(int[] nums, int left, int right){
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
     }
 }
