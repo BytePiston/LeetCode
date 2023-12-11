@@ -1,5 +1,5 @@
 class Solution {
- //Iterative    
+/* //Iterative    
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         result.add(new ArrayList<>());
@@ -17,31 +17,21 @@ class Solution {
         }
         return result;
     }
-
-/*    // Recursive
+*/
+    // Recursive
     public List<List<Integer>> subsets(int[] nums) {
-        return subsetsHelper(new ArrayList<>(), Arrays.stream(nums).boxed().collect(Collectors.toList()));
+        List<List<Integer>> result = new ArrayList<>();
+        subsetsHelper(0, nums, new ArrayList<>(), result);
+        return result;
     }
 
-    List<List<Integer>> subsetsHelper(List<Integer> processed, List<Integer> unProcessed){
-        List<List<Integer>> result = new ArrayList<>();
-        if(unProcessed.isEmpty()){
-            List<Integer> list = new ArrayList<>(processed);
-            result.add(list);
-            return result;
+    void subsetsHelper(int index, int[] nums, List<Integer> potentialAnswer, List<List<Integer>> result){
+        List<Integer> list = new ArrayList<>(potentialAnswer);
+        result.add(list);
+        for(int i=index; i<nums.length; i++){
+            list.add(nums[i]);
+            subsetsHelper(i+1, nums, list, result);
+            list.remove(list.size()-1);
         }
-
-        List<Integer> processedWithFirstElement = new ArrayList<>(processed);
-        processedWithFirstElement.add(unProcessed.get(0));
-
-        List<Integer> unProcessedWithoutFirstElement = new ArrayList<>(unProcessed);
-        unProcessedWithoutFirstElement.remove(0);
-
-        List<List<Integer>> processedWithFirst = subsetsHelper(processedWithFirstElement, unProcessedWithoutFirstElement);
-        List<List<Integer>> processedWithoutFirst = subsetsHelper(processed, unProcessedWithoutFirstElement);
-
-        processedWithFirst.addAll(processedWithoutFirst);
-
-        return processedWithFirst;
-    } */
+    } 
 }
