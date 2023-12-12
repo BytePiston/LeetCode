@@ -1,19 +1,18 @@
 class Solution {
     int totalCount = 0;
     public int countSubstrings(String s) {
-        
         for(int i=0; i<s.length(); i++){
-            countPalindromicSubstrings(s, i, i);
-            countPalindromicSubstrings(s, i, i+1);
+            countSubstringsHelper(s, i, i); // odd length
+            countSubstringsHelper(s, i, i+1); // even length
         }
         return totalCount;
     }
     
-    void countPalindromicSubstrings(String subString, int left, int right){
-        while(left>=0 && right<subString.length() && subString.charAt(left) == subString.charAt(right)){
+    void countSubstringsHelper(String s, int left, int right){
+        while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right)){
             totalCount++;
             left--;
             right++;
-        }     
+        }
     }
 }
