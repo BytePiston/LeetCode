@@ -1,14 +1,14 @@
 class Solution {
+    
+/*  //Solution 1:    
     public int leastInterval(char[] tasks, int n) {
         Map<Character, Integer> taskCount = new HashMap<>();
         for (char task : tasks) {
             taskCount.put(task, taskCount.getOrDefault(task, 0) + 1);
         }
-
         // Create a max heap based on frequency
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
         maxHeap.addAll(taskCount.values());
-
         int cycles = 0;
         while (!maxHeap.isEmpty()) {
             List<Integer> temp = new ArrayList<>();
@@ -33,5 +33,26 @@ class Solution {
         }
 
         return cycles;
+    }
+*/
+ 
+    //Solution 2:
+    public int leastInterval(char[] tasks, int n) {
+        
+        int[] charFreq = new int[26];
+        
+        for(char ch: tasks){
+            charFreq[ch-'A']++;
+        }
+        
+        Arrays.sort(charFreq);
+        int maxValue = charFreq[25]-1;
+        int idealSlots = maxValue*n;
+        
+        for(int i=24; i>=0; i--){
+            idealSlots -= Math.min(charFreq[i], maxValue);
+        }
+        
+        return idealSlots > 0 ? idealSlots+tasks.length : tasks.length;
     }
 }
