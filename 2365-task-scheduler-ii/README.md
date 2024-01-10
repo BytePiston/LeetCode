@@ -53,4 +53,3 @@ It can be shown that the tasks cannot be completed in less than 6 days.
 	<li><code>1 &lt;= tasks[i] &lt;= 10<sup>9</sup></code></li>
 	<li><code>1 &lt;= space &lt;= tasks.length</code></li>
 </ul>
-</div>
