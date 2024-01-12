@@ -7,7 +7,34 @@ class Solution {
         for(int[] arr: dp){
             Arrays.fill(arr, -1);
         }
-        return solveMemoized(m-1, n-1, dp, obstacleGrid);
+        //return solveMemoized(m-1, n-1, dp, obstacleGrid);
+        return solveTabulized(m, n, dp, obstacleGrid);
+    }
+    
+    //  Recursive wih Tabulitation;
+    int solveTabulized(int m, int n, int[][] dp, int[][] obstacleGrid){
+        for(int row=0; row<m; row++){
+            for(int col=0; col<n; col++){
+                if(row==0 && col==0){
+                    dp[row][col] = (obstacleGrid[row][col] == 0) ? 1 : 0;
+                } else{
+                    if(obstacleGrid[row][col] == 1){
+                        dp[row][col] = 0;
+                    } else{
+                       int up = 0; 
+                        int left = 0;
+                        if(row>0){
+                            up = dp[row-1][col];
+                        }
+                        if(col>0){
+                            left = dp[row][col-1];
+                        }
+                        dp[row][col] = up + left;   
+                    }
+                }
+            }
+        }
+        return dp[m-1][n-1];
     }
     
     //  Recursive wih Memoization;
