@@ -4,10 +4,33 @@ class Solution {
         for(int[] row: tab){
             Arrays.fill(row, -1);
         }
-        return solve(m-1, n-1, tab);
+        return solveTabulation(m, n, tab);
     }
-
-    int solve(int m, int n, int[][] tab){
+    
+    // Iterative solution with Tabulation;
+    int solveTabulation(int m, int n, int[][] tab){
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(i == 0 && j == 0){
+                    tab[i][j] = 1;
+                } else{
+                    int up = 0;
+                    int left = 0;
+                    if(i > 0){
+                        up = tab[i-1][j];
+                    }
+                    if(j > 0){
+                        left = tab[i][j-1];
+                    }
+                    tab[i][j] = up + left;
+                }
+            }
+        }
+        return tab[m-1][n-1];
+    }
+    
+    //  Recurrsive solution with Memoization;
+    int solveMemoizated(int m, int n, int[][] tab){
         
         if(m < 0 || n < 0){
             return 0;
@@ -18,7 +41,7 @@ class Solution {
         if(tab[m][n] != -1){
             return tab[m][n];
         }
-        tab[m][n] = solve(m-1, n, tab) + solve(m, n-1, tab);
+        tab[m][n] = solveMemoizated(m-1, n, tab) + solveMemoizated(m, n-1, tab);
         return tab[m][n];
     }
 }
