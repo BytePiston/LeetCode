@@ -55,7 +55,8 @@ class Solution {
                 }
             }
         }
-        return result;
+        memo.put(n, result);
+        return memo.get(n);
     }
     
     //  Recursive Solution;
