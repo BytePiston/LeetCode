@@ -1,15 +1,16 @@
 class Solution {
     public int findPeakElement(int[] nums) {
-        int s = 0;
-        int e = nums.length-1;
-
-        while(s<e){
-            int mid = s+(e-s)/2;
-            if(nums[mid] > nums[mid+1])
-                e = mid;
-            else if(nums[mid] < nums[mid+1])
-                s = mid + 1;
+       return findPeakNative(nums);
+    }
+    
+    //  Iterative Native Solution where peak var is first set to 0 and for each element in the array if we find any element greater or equal to element at peak index;
+    int findPeakNative(int[] nums){
+        int peak = 0;
+        for(int i=1; i<nums.length; i++){
+            if(nums[i] >= nums[peak]){
+                peak = i;
+            }
         }
-        return s;
+        return peak;
     }
 }
