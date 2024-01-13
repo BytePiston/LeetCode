@@ -1,4 +1,6 @@
 class Solution {
+    
+    //  Idea is to find compliment of number such that they form zero;
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> complimentMap = new HashMap<>();
         int[] res = new int[2];
