@@ -5,12 +5,11 @@ class Solution {
         int high = numString.length()-1;
         
         while(low < high){
-            if(numString.charAt(low) == numString.charAt(high)){
-                low++;
-                high--;
-            } else{
+            if(numString.charAt(low) != numString.charAt(high)){
                 return false;
             }
+            low++;
+            high--;
         }
         return true;
     }
