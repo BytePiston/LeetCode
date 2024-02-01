@@ -1,7 +1,6 @@
 class Solution {
     
-/*
-    //Using HashMap to store compliments;
+    //Using HashMap to store compliments (PrefixSum Technique);
     public int subarraySum(int[] nums, int k) {
         Map<Integer, Integer> complimentMap = new HashMap<>();
         complimentMap.put(0,1);
@@ -16,8 +15,8 @@ class Solution {
         }
         return result;
     }
-*/
-    
+
+/*    
     //Using recurssion;
     public int subarraySum(int[] nums, int k) {
         return subarraySumHelper(nums, k, 0);
@@ -38,4 +37,5 @@ class Solution {
         result += subarraySumHelper(nums, target, index + 1);
         return result;
     }
+*/
 }
