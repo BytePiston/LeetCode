@@ -23,4 +23,32 @@ class Solution {
             generateParenthesisHelper(result, leftOpeningCount, rightClosingCount-1, processed+")");
         }
     }
+    
+/*
+//  Code to count valid Parenthesis Combinations possible based on given num;
+
+    public int countValidParenthesisCombinations(int left, int right) {
+     
+        if(left == 0 && right == 0){
+          return 1;
+        }
+
+        if(left < 0 || right<0){
+          return 0;
+        }
+
+        int result = 0;
+
+        if(left>0){
+          result += BracketCombinations(left-1, right+1);
+        }
+
+        if(right>0){
+          result += BracketCombinations(left, right-1);
+        }
+
+        return result;
+  }
+
+*/
 }
