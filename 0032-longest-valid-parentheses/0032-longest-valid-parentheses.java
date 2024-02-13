@@ -1,4 +1,50 @@
 class Solution {
+    
+    public int longestValidParentheses(String s) {
+        int left = 0;
+        int right = 0;
+        int max = 0;
+        
+        //Left to Right; For identifying Right orphan paranthesis;
+        for(char ch: s.toCharArray()){
+            if(ch =='('){
+                left++;
+            } else{
+               right++; 
+            }
+            
+            if(left == right){
+                max = Math.max(max, left*2);
+            }
+            else if(right > left){
+                left = 0;
+                right = 0;
+            }
+        }
+        
+        left = 0;
+        right = 0;
+        
+        // Right to Left; For identifying Left orphan paranthesis;
+        for(int i=s.length()-1; i>=0;i--){
+            if(s.charAt(i) =='('){
+                left++;
+            } else{
+               right++; 
+            }
+            
+            if(left == right){
+                max = Math.max(max, left*2);
+            }
+            else if(left > right){
+                left = 0;
+                right = 0;
+            }
+        }
+        return max;
+    }
+    
+/*
     public int longestValidParentheses(String s) {
         
         //  Edge case where empty or Null String is Encountered;
@@ -34,4 +80,5 @@ class Solution {
         
         return max;
     }
+*/
 }
