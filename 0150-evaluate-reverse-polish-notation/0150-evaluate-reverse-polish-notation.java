@@ -11,6 +11,7 @@ class Solution {
     }
 
     void resolve(String op, Stack<Integer> stack){
+        //Null Pointer check
         int right = stack.pop();
         int left = stack.pop();
         switch(op){
