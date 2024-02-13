@@ -2,6 +2,9 @@
 
 This repository contains my solutions to various problems on LeetCode. I use this space to practice coding, improve my problem-solving skills, and maintain a record of my progress.
 
+> **Note:** Using [LeetHub Google Chrome Extension](https://chromewebstore.google.com/detail/leethub/aciombdipochlnkbpcbgdpjffcfdbggi) for integrating LeetCode with GitHub.
+
+
 ## Problem Categories
 
 The repository is structured by problem number and name,  similar to how it's found on [LeetCode](https://leetcode.com/). Please refer to [LeetCode](https://leetcode.com/) for detailed problem descriptions and constraints.
