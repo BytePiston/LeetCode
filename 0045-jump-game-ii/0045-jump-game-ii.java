@@ -13,7 +13,7 @@ class Solution {
             return memo.get(index);
         }
         
-        int minJump = 9999999; 
+        int minJump = 99999; 
         
         for(int i=index+1; i<=index+nums[index] && i <nums.length; i++){
             minJump = Math.min(minJump, jumpHelper(nums, i, memo)+1);
