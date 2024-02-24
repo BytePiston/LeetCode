@@ -1,6 +1,8 @@
 import java.util.*;
 public class NinjaTraining {
-    public static int ninjaTraining(int n, int points[][]) {
+
+    //Iterative Solution using DP;
+    public int ninjaTrainingIterative(int n, int points[][]) {
         // Write your code here..
         int[][] dp = new int[n][4];
         
@@ -22,32 +24,34 @@ public class NinjaTraining {
         }
         return dp[n-1][3];
     }
-    
-    static int f(int day, int last, int[][] points, int[][] dp) {
-        // If the result is already calculated, return it
-        if (dp[day][last] != -1) return dp[day][last];
+
+    //Recursive Solution using DP;
+    public int ninjaTrainingRecursive(int day, int last, int[][] points, int[][] dp) {
 
         // Base case: When it's the first day (day == 0)
         if (day == 0) {
-            int maxi = 0;
+            int max = 0;
             for (int i = 0; i <= 2; i++) {
                 if (i != last)
-                    maxi = Math.max(maxi, points[0][i]);
+                    max = Math.max(max, points[0][i]);
             }
-            return dp[day][last] = maxi; // Store and return the result
+            return dp[day][last] = max; // Store and return the result
         }
 
-        int maxi = 0;
+        // If the result is already calculated, return it
+        if (dp[day][last] != -1) return dp[day][last];
+
+        int max = 0;
         // Loop through the three activities on the current day
         for (int i = 0; i <= 2; i++) {
             if (i != last) {
                 // Calculate the points for the current activity and recursively
                 // calculate the maximum points for the previous day
-                int activity = points[day][i] + f(day - 1, i, points, dp);
-                maxi = Math.max(maxi, activity); // Update the maximum points
+                int activity = points[day][i] + ninjaTrainingRecursive(day - 1, i, points, dp);
+                max = Math.max(max, activity); // Update the maximum points
             }
         }
 
-        return dp[day][last] = maxi; // Store and return the result
+        return dp[day][last] = max; // Store and return the result
     }
 }
