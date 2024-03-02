@@ -16,12 +16,12 @@ class Solution {
     }
     
     void cyclicSort(int[] nums){
-        int i=0;
-        while(i<nums.length){
-            if(nums[i]>0 && nums[i]<nums.length && nums[i] != nums[nums[i]-1]){
-                swap(nums, i, nums[i]-1);
+        int index=0;
+        while(index<nums.length){
+            if(nums[index]>0 && nums[index]<=nums.length && nums[index] != nums[nums[index]-1]){
+                swap(nums, index, nums[index]-1);
             } else{
-                i++;   
+                index++;
             }
         }
     }
