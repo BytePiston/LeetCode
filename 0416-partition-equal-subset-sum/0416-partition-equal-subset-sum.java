@@ -23,7 +23,7 @@ class Solution {
         }
         
         for(int i=1; i<memo.length; i++){
-            for(int j=0; j<memo[0].length; j++){
+            for(int j=1; j<memo[0].length; j++){
                 if(nums[i-1]<=j){
                     memo[i][j] = memo[i-1][j-nums[i-1]] || memo[i-1][j] ;
                 } else{
