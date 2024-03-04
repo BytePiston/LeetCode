@@ -1,23 +1,22 @@
 class Solution {
     public String getPermutation(int n, int k) {
-        int fact = 1;
-        k = k - 1;
-        String result = "";
-        List<Integer> nums = new ArrayList<>();
-        for(int i=1; i<n; i++){
-            fact = fact*i;
-            nums.add(i);
+        
+        int[] factArray = new int[n];
+        factArray[0] = 1;
+        List<Integer> numberList = new ArrayList<>();
+        for(int i=1; i<factArray.length; i++){
+            factArray[i] = i*factArray[i-1];
+            numberList.add(i);
         }
-        nums.add(n);
-        while(true){
-            result = result + nums.get(k/fact);
-            nums.remove(k/fact);
-            if(nums.isEmpty()){
-                break;
-            }
-            k = k%fact;
-            fact = fact/nums.size();
+        numberList.add(n);
+        k = k-1;
+        StringBuilder resultSb = new StringBuilder();
+        for(int i=1; i<=n; i++){
+            int index = k / factArray[n-i];
+            resultSb.append(numberList.get(index));
+            numberList.remove(index);
+            k = k % factArray[n-i];
         }
-        return result;
+        return resultSb.toString();
     }
 }
