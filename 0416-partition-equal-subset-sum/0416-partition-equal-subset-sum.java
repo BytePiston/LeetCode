@@ -18,16 +18,12 @@ class Solution {
     // Iterative Solution using memoization;
     boolean canPartitionHelperIterative(int[] nums, int sum, int index, boolean[][] memo){
         
-        // for(int i=0; i<memo.length; i++){
-        //     memo[i][0] = true;
-        // }
-        
         for(int i=0; i<memo.length; i++){
+            memo[i][0] = true;
+        }
+        
+        for(int i=1; i<memo.length; i++){
             for(int j=1; j<memo[0].length; j++){
-                if(i==0){
-                    memo[i][0] = true;
-                    continue;
-                }
                 if(nums[i-1]<=j){
                     memo[i][j] = memo[i-1][j-nums[i-1]] || memo[i-1][j] ;
                 } else{
