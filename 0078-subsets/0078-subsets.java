@@ -1,37 +1,24 @@
 class Solution {
-/* //Iterative    
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        result.add(new ArrayList<>());
-
-        if(nums == null || nums.length == 0){
-            return result;
-        }
-        for(int num : nums){
-            int sizeOfInnerLists = result.size();
-            for(int i=0; i<sizeOfInnerLists; i++){
-                List<Integer> newSubsetList = new ArrayList<>(result.get(i));
-                newSubsetList.add(num);
-                result.add(newSubsetList);
-            }
-        }
+        subsetsHelper(nums, 0, result, new ArrayList<>());
         return result;
     }
-*/
-    // Recursive
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        subsetsHelper(0, nums, new ArrayList<>(), result);
-        return result;
-    }
-
-    void subsetsHelper(int index, int[] nums, List<Integer> potentialAnswer, List<List<Integer>> result){
-        List<Integer> list = new ArrayList<>(potentialAnswer);
-        result.add(list);
-        for(int i=index; i<nums.length; i++){
-            list.add(nums[i]);
-            subsetsHelper(i+1, nums, list, result);
-            list.remove(list.size()-1);
+    
+    void subsetsHelper(int[] nums, int index, List<List<Integer>> result, List<Integer> potentialAnswer){
+        if(index == nums.length){
+            result.add(new ArrayList<>(potentialAnswer));
+            return;
         }
-    } 
+        if(index>nums.length){
+            return;
+        }
+        //pick scenario;
+        potentialAnswer.add(nums[index]);
+        subsetsHelper(nums, index+1, result, potentialAnswer);
+        potentialAnswer.remove(potentialAnswer.size()-1);
+        
+        //not pick scenario;
+        subsetsHelper(nums, index+1, result, potentialAnswer);
+    }
 }
